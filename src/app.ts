@@ -1,14 +1,19 @@
+import http from 'http';
 import express from 'express';
+import bodyParser from 'body-parser';
+import config from './config/config';
+import logs from './config/log';
+import routes from './routes/sample';
 
+const NAMESPACE = 'Server'
 const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.listen(port, () => {
-    console.log(`The application is listening on port ${port}`);
-});
+app.use('/', routes);
+
+const httpServer = http.createServer(app);
+httpServer.listen(config.server.port, () => logs.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
 
 
