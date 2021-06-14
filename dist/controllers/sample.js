@@ -8,7 +8,7 @@ const NAMESPACE = "Sample Controller";
 const sampleHealthCheck = (req, res, next) => {
     log_1.default.info(NAMESPACE, `Sample health check route called`);
     return res.status(200).json({
-        message: 'pong'
+        message: 'Running'
     });
 };
 exports.default = { sampleHealthCheck };
