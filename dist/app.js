@@ -13,7 +13,7 @@ const NAMESPACE = 'Server';
 const app = express_1.default();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
-app.use('/', sample_1.default);
+app.use('/api', sample_1.default);
 const httpServer = http_1.default.createServer(app);
 httpServer.listen(config_1.default.server.port, () => log_1.default.info(NAMESPACE, `Server running on ${config_1.default.server.hostname}:${config_1.default.server.port}`));
 //# sourceMappingURL=app.js.map

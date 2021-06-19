@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/', routes);
+app.use('/api', routes);
 
 const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => logs.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
