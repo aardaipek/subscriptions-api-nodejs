@@ -16,17 +16,17 @@ const firebase_config_1 = __importDefault(require("../config/firebase.config"));
 const log_1 = __importDefault(require("../config/log"));
 const firestore = firebase_config_1.default.firestore();
 // Collections
-const subscriptionCollection = "subscription";
-const addSubscription = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const userCollection = "user";
+const addUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        yield firestore.collection(subscriptionCollection).doc().set(data);
-        res.send(log_1.default.info("Development", "Your subscription record has created"));
+        yield firestore.collection(userCollection).doc().set(data);
+        res.send(log_1.default.info("Development", "Your user record has created"));
     }
     catch (err) {
         log_1.default.error("Development", err.message);
         res.status(400).send("Something wrong!");
     }
 });
-exports.default = { addSubscription };
-//# sourceMappingURL=subscription.controller.js.map
+exports.default = { addUser };
+//# sourceMappingURL=user.controller.js.map
