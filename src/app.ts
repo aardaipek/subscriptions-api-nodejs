@@ -5,6 +5,7 @@ import config from './config/config';
 import logs from './config/log';
 import routes from './routes/sample';
 
+
 const NAMESPACE = 'Server'
 const app = express();
 
