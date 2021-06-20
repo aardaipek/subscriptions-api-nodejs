@@ -1,10 +1,10 @@
 import Subscription from "./subscription.model";
 
 class User {
-    constructor(name: string, lastname: string, subscription: Subscription) {
+    constructor(name: string, lastname: string, subscription: Subscription, fullname: string) {
         name = name;
         lastname = lastname;
-        const fullname = name + lastname;
+        fullname = name + lastname;
         subscription = subscription;
     }
 }

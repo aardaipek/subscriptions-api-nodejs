@@ -10,7 +10,9 @@ const userCollection = "user";
 const addUser = async (req, res, next) => {
     try {
         const data = req.body;
-        await firestore.collection(userCollection).doc().set(data);
+        const userSubCollection = firestore.collection(userCollection);
+        await userSubCollection.doc("arda").set(data);
+
         res.send(logs.info("Development", "Your user record has created"));
     } catch (err) {
         logs.error("Development", err.message)

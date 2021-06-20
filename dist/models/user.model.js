@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class User {
-    constructor(name, lastname, subscription) {
+    constructor(name, lastname, subscription, fullname) {
         name = name;
         lastname = lastname;
-        const fullname = name + lastname;
+        fullname = name + lastname;
         subscription = subscription;
     }
 }
