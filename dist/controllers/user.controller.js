@@ -21,8 +21,7 @@ const addUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const data = req.body;
         const userSubCollection = firestore.collection(userCollection);
-        const cretedData = yield userSubCollection.doc("arda").set(data);
-        console.log(cretedData);
+        yield userSubCollection.doc("arda").set(data);
         res.send(log_1.default.info("Development", "Your user record has created"));
     }
     catch (err) {

@@ -16,11 +16,18 @@ const firebase_config_1 = __importDefault(require("../config/firebase.config"));
 const log_1 = __importDefault(require("../config/log"));
 const firestore = firebase_config_1.default.firestore();
 // Collections
-const subscriptionCollection = "subscription";
+const subscriptionCollection = "subscriptions";
 const addSubscription = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = req.body;
-        yield firestore.collection(subscriptionCollection).doc().set(data);
+        const username = req.body.username;
+        const subType = req.body.type;
+        const data = req.body.data;
+        const subref = firestore
+            .collection(subscriptionCollection)
+            .doc(username)
+            .collection(subscriptionCollection)
+            .doc(subType);
+        yield subref.set(data);
         res.send(log_1.default.info("Development", "Your subscription record has created"));
     }
     catch (err) {
@@ -28,5 +35,31 @@ const addSubscription = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         res.status(400).send("Something wrong!");
     }
 });
-exports.default = { addSubscription };
+const getAllUserSubscription = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (req.body.username) {
+            const username = req.body.username;
+            var subscriptionArray = [];
+            //TODO: token işlemleri ve giriş yapan user ile istek atan user ın aynı olduğunun bulunması gerek
+            yield firestore
+                .collection(subscriptionCollection)
+                .doc(username)
+                .collection(subscriptionCollection)
+                .get()
+                .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    subscriptionArray.push(doc.data());
+                });
+            });
+            res.json(subscriptionArray);
+        }
+        else {
+            res
+                .status(400)
+                .send("Username and sub type is required please fill these values");
+        }
+    }
+    catch (err) { }
+});
+exports.default = { addSubscription, getAllUserSubscription };
 //# sourceMappingURL=subscription.controller.js.map
