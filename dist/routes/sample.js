@@ -9,7 +9,7 @@ const user_controller_1 = __importDefault(require("../controllers/user.controlle
 const router = express_1.default.Router();
 router.get("/healthcheck", sample_1.default.sampleHealthCheck);
 router.post("/subscription/create", subscription_controller_1.default.addSubscription);
-router.get("/subscription/get_all", subscription_controller_1.default.getAllUserSubscription);
+router.post("/subscription/get_all", subscription_controller_1.default.getAllUserSubscription);
 router.post("/user/create", user_controller_1.default.addUser);
 module.exports = router;
 //# sourceMappingURL=sample.js.map

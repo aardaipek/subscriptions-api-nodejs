@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/healthcheck", controller.sampleHealthCheck);
 router.post("/subscription/create", subscriptionController.addSubscription);
-router.get(
+router.post(
   "/subscription/get_all",
   subscriptionController.getAllUserSubscription
 );
